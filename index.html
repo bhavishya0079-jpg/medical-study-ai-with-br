@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102b46">
+<title>Medical Study AI with BR</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:#f3f7fb;
+  color:#172b40;
+}
+header{
+  background:#102b46;
+  color:white;
+  padding:22px 18px;
+}
+.logo{font-size:23px;font-weight:bold}
+.logo span{color:#59d4c2}
+header p{font-size:13px;color:#cbd9e8;margin-top:9px}
+main{max-width:800px;margin:auto;padding:20px 15px}
+.search{
+  width:100%;padding:15px;border:1px solid #dce5ee;
+  border-radius:12px;font-size:15px;margin-bottom:24px;
+}
+h2{font-size:19px;margin-bottom:15px}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mode{
+  padding:20px 13px;border-radius:16px;
+  min-height:155px;border:1px solid #dce5ee;
+}
+.bhms{background:#e5f2ff}
+.allopathy{background:#e4f7ee}
+.emoji{font-size:30px;margin-bottom:12px}
+.mode h3{font-size:17px;margin-bottom:8px}
+.mode p{font-size:12px;line-height:1.5;color:#536477}
+button{
+  border:0;border-radius:9px;padding:10px 14px;
+  font-weight:bold;margin-top:13px;cursor:pointer;
+  background:#1769aa;color:white;
+}
+.allopathy button{background:#16834f}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.feature{
+  background:white;border:1px solid #e1e8ef;
+  border-radius:13px;padding:16px;
+}
+.feature .emoji{font-size:25px}
+.feature h3{font-size:15px;margin-bottom:7px}
+.feature p{font-size:12px;color:#68798b;line-height:1.5}
+.section{margin-top:30px}
+footer{
+  text-align:center;padding:25px 10px;
+  color:#718096;font-size:12px;
+}
+#message{
+  display:none;background:white;padding:18px;
+  margin-top:18px;border-radius:12px;
+  border:1px solid #dce5ee;line-height:1.6;
+}
+@media(max-width:360px){
+  .modes,.features{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Medical Study AI <span>with BR</span></div>
+  <p>Your Complete Medical Learning Companion</p>
+</header>
+
+<main>
+
+  <input class="search" id="search"
+  placeholder="Search Subject, Medicine or Topic..."
+  oninput="searchItems()">
+
+  <section>
+    <h2>Choose Your Study Mode</h2>
+
+    <div class="modes">
+      <div class="mode bhms">
+        <div class="emoji">📚</div>
+        <h3>BHMS Mode</h3>
+        <p>HNGU Syllabus, Notes, Papers, Solutions and MCQs.</p>
+        <button onclick="openMode('BHMS')">Enter BHMS →</button>
+      </div>
+
+      <div class="mode allopathy">
+        <div class="emoji">💊</div>
+        <h3>Allopathy Mode</h3>
+        <p>Medicines, Uses, Side Effects and Medical Information.</p>
+        <button onclick="openMode('Allopathy')">Enter Allopathy →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Quick Features</h2>
+
+    <div class="features">
+      <div class="feature">
+        <div class="emoji">📷</div>
+        <h3>AI Scanner</h3>
+        <p>Scan Questions and Medicine Photos.</p>
+      </div>
+
+      <div class="feature">
+        <div class="emoji">📄</div>
+        <h3>Previous Papers</h3>
+        <p>HNGU Previous Year Papers and Solutions.</p>
+      </div>
+
+      <div class="feature">
+        <div class="emoji">🧠</div>
+        <h3>AI Medical Tutor</h3>
+        <p>Learn Medical Topics with Easy Explanations.</p>
+      </div>
+
+      <div class="feature">
+        <div class="emoji">🏆</div>
+        <h3>Daily Quiz</h3>
+        <p>Test Your Knowledge with MCQs.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="message"></div>
+
+</main>
+
+<footer>
+  Medical Study AI with BR<br>
+  Learn Smarter. Study Better.
+</footer>
+
+<script>
+function openMode(mode){
+  let box=document.getElementById("message");
+  box.style.display="block";
+
+  if(mode==="BHMS"){
+    box.innerHTML="<h3>📚 BHMS Mode</h3><p>HNGU BHMS Study Section will be available here. Subjects, Notes, Previous Papers and Solutions are coming soon.</p>";
+  }else{
+    box.innerHTML="<h3>💊 Allopathy Mode</h3><p>Allopathy Medical Database will be available here. Medicines, Uses, Side Effects and Pronunciation are coming soon.</p>";
+  }
+  box.scrollIntoView({behavior:"smooth"});
+}
+
+function searchItems(){
+  let value=document.getElementById("search").value.toLowerCase();
+  let items=document.querySelectorAll(".mode,.feature");
+  items.forEach(item=>{
+    item.style.display=item.innerText.toLowerCase().includes(value)?"block":"none";
+  });
+}
+</script>
+
+</body>
+</html>
