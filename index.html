@@ -141,7 +141,13 @@ footer{
 </footer>
 
 <script>
-function openMode(mode){
+  function openMode(mode){
+  if(mode==="BHMS"){
+    window.location.href="bhms.html";
+  }else{
+    window.location.href="allopathy.html";
+  }
+  }
   let box=document.getElementById("message");
   box.style.display="block";
 
