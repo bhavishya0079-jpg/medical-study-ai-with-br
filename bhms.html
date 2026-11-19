@@ -1,1 +1,167 @@
 
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHMS Study | Medical Study AI with BR</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f2f6fb;color:#172c43}
+header{background:#102d49;color:white;padding:22px 17px}
+header a{color:#bce5ff;text-decoration:none;font-size:13px}
+header h1{font-size:23px;margin:17px 0 7px}
+header p{font-size:13px;color:#d3e4f3}
+main{max-width:850px;margin:auto;padding:18px 14px}
+.search{width:100%;padding:14px;border:1px solid #dce5ee;border-radius:12px;font-size:15px;margin:17px 0}
+h2{font-size:19px;margin:15px 0}
+.year{background:white;border:1px solid #dce5ee;border-radius:15px;margin:13px 0;overflow:hidden}
+.year-head{padding:17px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.year-head h3{font-size:17px}
+.year-head p{font-size:12px;color:#6c7d90;margin-top:5px}
+.year-head button{background:#1769aa;color:white;border:0;padding:10px 13px;border-radius:9px}
+.subjects{padding:0 15px 15px;display:none}
+.subject{padding:13px;background:#f1f6fc;border-radius:10px;margin-top:9px}
+.subject h4{font-size:14px}
+.subject p{font-size:12px;color:#607287;margin-top:5px}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.actions button{background:#1769aa;color:white;border:0;padding:8px 10px;border-radius:7px;font-size:12px}
+.actions button:disabled{background:#aab8c5}
+.tag{font-size:10px;color:#1264a0;background:#e1f0ff;padding:5px 8px;border-radius:20px}
+.panel{background:white;border:1px solid #dce5ee;border-radius:13px;padding:16px;margin-top:18px}
+.panel p{font-size:13px;line-height:1.7;color:#53677c;margin-top:8px}
+.notice{background:#fff6df;padding:12px;border-radius:10px;font-size:12px;line-height:1.6;margin-top:12px;color:#765414}
+#result{display:none;background:white;padding:15px;border-radius:12px;margin-top:15px}
+footer{text-align:center;padding:25px;color:#738398;font-size:12px}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html">← Home Page</a>
+<h1>📚 BHMS Study Centre</h1>
+<p>Medical Study AI with BR</p>
+<p>HNGU • All Years • Study Materials</p>
+</header>
+
+<main>
+<input class="search" id="search"
+placeholder="Search Subject or Topic..."
+oninput="searchSubjects()">
+
+<h2>Choose Your BHMS Year</h2>
+
+<div id="years">
+
+<div class="year">
+<div class="year-head">
+<div>
+<h3>First BHMS</h3>
+<p>Foundation & Basic Medical Sciences</p>
+</div>
+<button onclick="toggle('y1')">Explore ↓</button>
+</div>
+<div class="subjects" id="y1">
+<div class="subject"><h4>Human Anatomy, Histology and Embryology</h4><p>માનવ શરીરની રચના અને વિકાસ</p><div class="actions"><button onclick="info('Anatomy')">Study Details</button><button onclick="info('Anatomy Papers')">Papers</button></div></div>
+<div class="subject"><h4>Human Physiology and Biochemistry</h4><p>શરીરની ક્રિયાઓ અને રાસાયણિક પ્રક્રિયાઓ</p><div class="actions"><button onclick="info('Physiology')">Study Details</button><button onclick="info('Physiology Papers')">Papers</button></div></div>
+<div class="subject"><h4>Homoeopathic Pharmacy</h4><p>હોમિયોપેથીક દવાઓની તૈયારી અને ઉપયોગ</p><div class="actions"><button onclick="info('Pharmacy')">Study Details</button><button onclick="info('Pharmacy Papers')">Papers</button></div></div>
+<div class="subject"><h4>Homoeopathic Materia Medica</h4><p>હોમિયોપેથીક ઔષધોનો અભ્યાસ</p><div class="actions"><button onclick="info('Materia Medica')">Study Details</button><button onclick="info('Materia Medica Papers')">Papers</button></div></div>
+<div class="subject"><h4>Organon of Medicine and Psychology</h4><p>હોમિયોપેથીક સિદ્ધાંતો અને મનોવિજ્ઞાન</p><div class="actions"><button onclick="info('Organon')">Study Details</button><button onclick="info('Organon Papers')">Papers</button></div></div>
+</div>
+</div>
+
+<div class="year">
+<div class="year-head">
+<div><h3>Second BHMS</h3><p>Pathology & Clinical Foundations</p></div>
+<button onclick="toggle('y2')">Explore ↓</button>
+</div>
+<div class="subjects" id="y2">
+<div class="subject"><h4>Pathology and Microbiology</h4><p>રોગવિજ્ઞાન અને સૂક્ષ્મજીવવિજ્ઞાન</p><div class="actions"><button onclick="info('Pathology')">Study Details</button><button onclick="info('Pathology Papers')">Papers</button></div></div>
+<div class="subject"><h4>Forensic Medicine and Toxicology</h4><p>ન્યાયિક ચિકિત્સા અને વિષવિજ્ઞાન</p><div class="actions"><button onclick="info('FMT')">Study Details</button><button onclick="info('FMT Papers')">Papers</button></div></div>
+<div class="subject"><h4>Organon of Medicine</h4><p>હોમિયોપેથીક તત્ત્વજ્ઞાન</p><div class="actions"><button onclick="info('Organon II')">Study Details</button><button onclick="info('Organon II Papers')">Papers</button></div></div>
+<div class="subject"><h4>Homoeopathic Materia Medica</h4><p>ઔષધોનો વિગતવાર અભ્યાસ</p><div class="actions"><button onclick="info('Materia Medica II')">Study Details</button><button onclick="info('Materia Medica II Papers')">Papers</button></div></div>
+<div class="subject"><h4>Surgery</h4><p>શલ્યચિકિત્સાના મૂળભૂત સિદ્ધાંતો</p><div class="actions"><button onclick="info('Surgery')">Study Details</button><button onclick="info('Surgery Papers')">Papers</button></div></div>
+<div class="subject"><h4>Obstetrics and Gynaecology</h4><p>પ્રસૂતિ અને સ્ત્રીરોગવિજ્ઞાન</p><div class="actions"><button onclick="info('OBG')">Study Details</button><button onclick="info('OBG Papers')">Papers</button></div></div>
+</div>
+</div>
+
+<div class="year">
+<div class="year-head">
+<div><h3>Third BHMS</h3><p>Advanced Clinical Subjects</p></div>
+<button onclick="toggle('y3')">Explore ↓</button>
+</div>
+<div class="subjects" id="y3">
+<div class="subject"><h4>Surgery</h4><p>શલ્યચિકિત્સા</p><div class="actions"><button onclick="info('Surgery III')">Study Details</button><button onclick="info('Surgery III Papers')">Papers</button></div></div>
+<div class="subject"><h4>Obstetrics and Gynaecology</h4><p>પ્રસૂતિ અને સ્ત્રીરોગવિજ્ઞાન</p><div class="actions"><button onclick="info('OBG III')">Study Details</button><button onclick="info('OBG III Papers')">Papers</button></div></div>
+<div class="subject"><h4>Organon of Medicine</h4><p>હોમિયોપેથીક તત્ત્વજ્ઞાન</p><div class="actions"><button onclick="info('Organon III')">Study Details</button><button onclick="info('Organon III Papers')">Papers</button></div></div>
+<div class="subject"><h4>Homoeopathic Materia Medica</h4><p>ઔષધવિજ્ઞાન</p><div class="actions"><button onclick="info('Materia Medica III')">Study Details</button><button onclick="info('Materia Medica III Papers')">Papers</button></div></div>
+<div class="subject"><h4>Practice of Medicine</h4><p>રોગોનું નિદાન અને તબીબી અભ્યાસ</p><div class="actions"><button onclick="info('POM')">Study Details</button><button onclick="info('POM Papers')">Papers</button></div></div>
+<div class="subject"><h4>Community Medicine</h4><p>સમુદાય આરોગ્ય</p><div class="actions"><button onclick="info('Community Medicine')">Study Details</button><button onclick="info('Community Medicine Papers')">Papers</button></div></div>
+</div>
+</div>
+
+<div class="year">
+<div class="year-head">
+<div><h3>Fourth BHMS</h3><p>Final Year & Clinical Learning</p></div>
+<button onclick="toggle('y4')">Explore ↓</button>
+</div>
+<div class="subjects" id="y4">
+<div class="subject"><h4>Practice of Medicine</h4><p>તબીબી અભ્યાસ અને નિદાન</p><div class="actions"><button onclick="info('POM IV')">Study Details</button><button onclick="info('POM IV Papers')">Papers</button></div></div>
+<div class="subject"><h4>Homoeopathic Materia Medica</h4><p>ઔષધોનો વિગતવાર અભ્યાસ</p><div class="actions"><button onclick="info('Materia Medica IV')">Study Details</button><button onclick="info('Materia Medica IV Papers')">Papers</button></div></div>
+<div class="subject"><h4>Organon of Medicine</h4><p>હોમિયોપેથીક તત્ત્વજ્ઞાન</p><div class="actions"><button onclick="info('Organon IV')">Study Details</button><button onclick="info('Organon IV Papers')">Papers</button></div></div>
+<div class="subject"><h4>Homoeopathic Repertory</h4><p>રિપર્ટરી અને કેસ ટેકિંગ</p><div class="actions"><button onclick="info('Repertory')">Study Details</button><button onclick="info('Repertory Papers')">Papers</button></div></div>
+<div class="subject"><h4>Community Medicine</h4><p>સમુદાય આરોગ્ય</p><div class="actions"><button onclick="info('Community Medicine IV')">Study Details</button><button onclick="info('Community Medicine IV Papers')">Papers</button></div></div>
+</div>
+</div>
+
+</div>
+
+<div id="result"></div>
+
+<div class="panel">
+<h3>📄 Previous Year Papers</h3>
+<p>2010 થી 2026 સુધીના ઉપલબ્ધ HNGU Papers વર્ષ, પરીક્ષા અને વિષય પ્રમાણે ઉમેરવામાં આવશે.</p>
+<p>દરેક પેપર સાથે ચકાસેલા Solutions અને Gujarati Explanation ઉમેરવાના છે.</p>
+<div class="notice">હાલમાં આ વિભાગનું Database તૈયાર થઈ રહ્યું છે. અહીં હજી કોઈ Original Paper Upload થયેલું નથી. અન્ય University ના Papers ને HNGU તરીકે દર્શાવવામાં નહીં આવે.</div>
+</div>
+
+<div class="panel">
+<h3>🧠 BHMS Study Assistant</h3>
+<p>આગામી વિભાગોમાં Chapter-wise Notes, MCQ, Viva, Diagrams, Question Scanner અને AI Tutor ઉમેરવામાં આવશે.</p>
+</div>
+
+<div class="panel">
+<h3>📌 Curriculum Notice</h3>
+<p>Subjects ની આ યાદી પ્રારંભિક છે. લાગુ પડતા HNGU/NCH Curriculum, admission batch અને examination scheme પ્રમાણે અંતિમ યાદી Verify કરવામાં આવશે.</p>
+</div>
+
+</main>
+
+<footer>Medical Study AI with BR<br>BHMS Study Centre</footer>
+
+<script>
+function toggle(id){
+ let box=document.getElementById(id);
+ box.style.display=box.style.display==="block"?"none":"block";
+}
+function info(name){
+ let box=document.getElementById("result");
+ box.style.display="block";
+ box.innerHTML="<h3>"+name+"</h3><p style='margin-top:10px;line-height:1.7;color:#53677c'>આ વિભાગનું Study Material અને Verified HNGU Papers આગળના Updates માં ઉમેરવામાં આવશે.</p>";
+ box.scrollIntoView({behavior:"smooth"});
+}
+function searchSubjects(){
+ let q=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".subject").forEach(s=>{
+  s.style.display=s.innerText.toLowerCase().includes(q)?"block":"none";
+ });
+ document.querySelectorAll(".year").forEach(y=>{
+  let matches=[...y.querySelectorAll(".subject")].some(s=>s.style.display!=="none");
+  if(q && matches){
+   y.querySelector(".subjects").style.display="block";
+  }
+ });
+}
+</script>
+</body>
+</html>
