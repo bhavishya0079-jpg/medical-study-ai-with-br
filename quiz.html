@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCQ and Viva | Medical Study AI with BR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">📝 Medical Study AI</div>
+  <button onclick="goHome()">Home</button>
+</header>
+
+<main class="container">
+
+  <a href="bhms.html" class="back-link">← Back to Dashboard</a>
+
+  <section class="hero">
+    <h1>MCQ Test & Viva Practice</h1>
+    <p>Practice medical questions and prepare for examinations.</p>
+  </section>
+
+  <h2 class="section-title">Select Study Mode</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>🎓 BHMS MCQ</h3>
+      <p>BHMS subject-wise multiple-choice questions.</p>
+      <button onclick="selectQuiz('BHMS')">Select BHMS</button>
+    </div>
+
+    <div class="card">
+      <h3>🩺 Allopathy MCQ</h3>
+      <p>Allopathy medical learning questions.</p>
+      <button onclick="selectQuiz('Allopathy')">Select Allopathy</button>
+    </div>
+
+    <div class="card">
+      <h3>🎤 Viva Practice</h3>
+      <p>Prepare oral examination questions and answers.</p>
+      <button onclick="showViva()">Open Viva</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">Quiz</h2>
+
+  <div class="card">
+    <p id="quizCourse">Choose a course to begin.</p>
+    <button onclick="startQuiz()">Start Test</button>
+    <div id="quizContainer"></div>
+  </div>
+
+  <h2 class="section-title">Viva Questions</h2>
+
+  <div id="vivaList">
+    <p>Verified viva questions will appear here.</p>
+  </div>
+
+  <h2 class="section-title">Practice Features</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Topic-wise Test</h3>
+      <p>Practice questions according to individual topics.</p>
+    </div>
+
+    <div class="card">
+      <h3>Instant Results</h3>
+      <p>See your score after completing a quiz.</p>
+    </div>
+
+    <div class="card">
+      <h3>Answer Explanation</h3>
+      <p>Understand correct answers in simple language.</p>
+    </div>
+
+    <div class="card">
+      <h3>Gujarati Explanation</h3>
+      <p>Learn difficult medical concepts in Gujarati.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Study Disclaimer</h3>
+    <p>
+      Questions and answers are for educational purposes.
+      Always verify important medical facts with reliable textbooks
+      and official study material.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  Medical Study AI with BR © 2026
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+<script>
+let selectedCourse = "BHMS";
+
+function selectQuiz(course) {
+  selectedCourse = course;
+
+  document.getElementById("quizCourse").textContent =
+    course + " MCQ selected. Press Start Test.";
+}
+
+function startQuiz() {
+  if (typeof MCQ_DATABASE === "undefined") return;
+
+  const filtered = MCQ_DATABASE.filter(item =>
+    item.course.toLowerCase() === selectedCourse.toLowerCase()
+  );
+
+  currentQuestion = 0;
+  quizScore = 0;
+
+  const container = document.getElementById("quizContainer");
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <p>No ${escapeHTML(selectedCourse)} MCQs have been added yet.</p>
+    `;
+    return;
+  }
+
+  window.activeQuiz = filtered;
+  showSelectedQuestion();
+}
+
+function showSelectedQuestion() {
+  const container = document.getElementById("quizContainer");
+
+  if (currentQuestion >= window.activeQuiz.length) {
+    container.innerHTML = `
+      <h3>Test Completed!</h3>
+      <p>Score: ${quizScore}/${window.activeQuiz.length}</p>
+      <button onclick="startQuiz()">Restart</button>
+    `;
+    return;
+  }
+
+  const q = window.activeQuiz[currentQuestion];
+
+  container.innerHTML = `
+    <h3>Question ${currentQuestion + 1}</h3>
+    <p>${escapeHTML(q.question)}</p>
+    ${q.options.map((option, index) => `
+      <button
+        style="display:block;width:100%;margin:8px 0;text-align:left"
+        onclick="answerSelected(${index})">
+        ${escapeHTML(option)}
+      </button>
+    `).join("")}
+    <p id="selectedFeedback"></p>
+  `;
+}
+
+function answerSelected(index) {
+  const q = window.activeQuiz[currentQuestion];
+  const selected = q.options[index];
+
+  if (selected === q.answer) {
+    quizScore++;
+  }
+
+  const feedback = document.getElementById("selectedFeedback");
+
+  feedback.innerHTML = `
+    <b>Correct Answer:</b> ${escapeHTML(q.answer)}
+    <br>
+    ${escapeHTML(q.explanation || "")}
+  `;
+
+  const next = document.createElement("button");
+  next.textContent = "Next Question";
+  next.onclick = () => {
+    currentQuestion++;
+    showSelectedQuestion();
+  };
+
+  feedback.after(next);
+
+  document.querySelectorAll("#quizContainer button:not(:last-child)")
+    .forEach(button => button.disabled = true);
+}
+
+function showViva() {
+  renderViva("vivaList");
+  document.getElementById("vivaList").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+</script>
+
+</body>
+</html>
