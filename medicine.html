@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Database | Medical Study AI with BR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">💊 Medical Study AI</div>
+  <button onclick="goHome()">Home</button>
+</header>
+
+<main class="container">
+
+  <a href="allopathy.html" class="back-link">← Back to Allopathy</a>
+
+  <section class="hero">
+    <h1>Medicine Database 💊</h1>
+    <p>Medicine information, composition, uses and Gujarati pronunciation.</p>
+  </section>
+
+  <h2 class="section-title">Search Medicine</h2>
+
+  <div class="card">
+    <input
+      type="search"
+      id="medicineSearch"
+      placeholder="Search medicine or generic name..."
+      oninput="searchMedicines('medicineSearch','medicineResults')"
+    >
+
+    <div id="medicineResults">
+      <p>Enter a medicine name to search.</p>
+    </div>
+
+    <div id="medicineDetails"></div>
+  </div>
+
+  <h2 class="section-title">Medicine Image Scanner 📷</h2>
+
+  <div class="card">
+    <p>Upload a clear medicine strip, bottle or package image.</p>
+
+    <input
+      type="file"
+      id="medicineImage"
+      accept="image/*"
+      capture="environment"
+      onchange="previewImage('medicineImage','medicinePreview')"
+    >
+
+    <div id="medicinePreview"></div>
+
+    <p>
+      Image preview is available. Automatic medicine recognition
+      and OCR will be added separately.
+    </p>
+  </div>
+
+  <h2 class="section-title">Medicine Information Includes</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Generic Name</h3>
+      <p>Scientific medicine name.</p>
+    </div>
+
+    <div class="card">
+      <h3>Brand Name</h3>
+      <p>Verified available brand information.</p>
+    </div>
+
+    <div class="card">
+      <h3>Composition</h3>
+      <p>Active ingredients and strengths.</p>
+    </div>
+
+    <div class="card">
+      <h3>Uses and Indications</h3>
+      <p>Educational information about approved uses.</p>
+    </div>
+
+    <div class="card">
+      <h3>Side Effects</h3>
+      <p>Possible adverse effects and warnings.</p>
+    </div>
+
+    <div class="card">
+      <h3>Precautions</h3>
+      <p>Contraindications and interactions.</p>
+    </div>
+
+    <div class="card">
+      <h3>Gujarati Explanation</h3>
+      <p>Simple Gujarati meaning and explanation.</p>
+    </div>
+
+    <div class="card">
+      <h3>English Pronunciation</h3>
+      <p>English medical words with Gujarati-script pronunciation.</p>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h3>⚠️ Medical Safety</h3>
+    <p>
+      This database is for education, not self-medication.
+      Never decide dosage or treatment from this page alone.
+      Always consult a qualified healthcare professional.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  Medical Study AI with BR © 2026
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
