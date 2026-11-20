@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Allopathy medical learning and medicine information">
+  <title>Allopathy Mode | Medical Study AI with BR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">🩺 Medical Study AI</div>
+  <button onclick="goHome()">Home</button>
+</header>
+
+<main class="container">
+
+  <a href="index.html" class="back-link">← Back to Home</a>
+
+  <section class="hero">
+    <h1>Allopathy Mode 🩺</h1>
+    <p>Learn medicines and medical topics in English and Gujarati.</p>
+  </section>
+
+  <h2 class="section-title">Medical Learning Features</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>💊 Medicine Database</h3>
+      <p>Search medicine names, generic names and available information.</p>
+      <br>
+      <button onclick="goToPage('medicine.html')">Open Database</button>
+    </div>
+
+    <div class="card">
+      <h3>📷 Medicine Image Scanner</h3>
+      <p>Upload a medicine image to preview it for identification.</p>
+      <br>
+      <button onclick="goToPage('medicine.html')">Open Scanner</button>
+    </div>
+
+    <div class="card">
+      <h3>🔊 English Pronunciation</h3>
+      <p>Learn English medical words with Gujarati pronunciation.</p>
+      <br>
+      <button onclick="goToPage('medicine.html')">Learn Pronunciation</button>
+    </div>
+
+    <div class="card">
+      <h3>📚 Medical Notes</h3>
+      <p>Study medical topics with simple explanations.</p>
+      <br>
+      <button onclick="goToPage('notes.html')">Open Notes</button>
+    </div>
+
+    <div class="card">
+      <h3>📝 MCQ Practice</h3>
+      <p>Practice questions and test your knowledge.</p>
+      <br>
+      <button onclick="goToPage('quiz.html')">Start Practice</button>
+    </div>
+
+    <div class="card">
+      <h3>📄 Study Materials</h3>
+      <p>Explore medical study resources.</p>
+      <br>
+      <button onclick="goToPage('notes.html')">Open Materials</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">Search Medicine</h2>
+
+  <div class="card">
+    <input
+      type="search"
+      id="medicineSearch"
+      placeholder="Enter medicine name..."
+      oninput="searchMedicines('medicineSearch','medicineResults')"
+    >
+    <div id="medicineResults"></div>
+    <div id="medicineDetails"></div>
+  </div>
+
+  <h2 class="section-title">Important Information</h2>
+
+  <div class="card">
+    <p>
+      This section is for medical education only. Medicine details,
+      dosage, safety and treatment decisions must be verified with
+      reliable medical references and qualified healthcare professionals.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  Medical Study AI with BR © 2026
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
