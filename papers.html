@@ -163,11 +163,29 @@ const papers = paperSource.filter(paper => {
         <p><b>Type:</b> ${escapeHTML(paper.examType)}</p>
         <p><b>University:</b> ${isHNGU ? "HNGU official record source" : "Other university source"}</p>
 
-        <a href="${escapeHTML(paper.file)}"
-           target="_blank"
-           rel="noopener noreferrer">
-          <button type="button">Open Original Source</button>
-        </a>
+        ${paper.file && /\.pdf(?:$|[?#])/i.test(paper.file)
+  ? `
+    <iframe
+      src="${escapeHTML(paper.file)}#toolbar=1"
+      width="100%"
+      height="500"
+      style="border:1px solid #ccc;border-radius:10px"
+      title="Question Paper PDF">
+    </iframe>
+    <a href="${escapeHTML(paper.file)}"
+       target="_blank"
+       rel="noopener noreferrer">
+       <button type="button">Open PDF</button>
+    </a>
+  `
+  : `
+    <a href="${escapeHTML(paper.file)}"
+       target="_blank"
+       rel="noopener noreferrer">
+       <button type="button">Open Original Source</button>
+    </a>
+  `
+        }
 
         <p><small>
           Original university source. Individual PDF availability depends on the source website.
