@@ -226,7 +226,58 @@ const MEDICINE_DATABASE = [
    Add only verified HNGU papers here.
 ===================================== */
 
-const PAPER_DATABASE = [];
+
+const PAPER_DATABASE = [
+  {
+    id: "vngsu-first",
+    university: "VNSGU",
+    course: "BHMS",
+    year: "2022-2026",
+    bhmsYear: "First BHMS",
+    subject: "All Subjects",
+    examType: "Previous Year Question Papers",
+    verified: true,
+    file: "https://www.cnkotharihomeocollege.org/Students%20Corner/Question-Papers/5465",
+    solution: ""
+  },
+  {
+    id: "vngsu-second",
+    university: "VNSGU",
+    course: "BHMS",
+    year: "2022-2026",
+    bhmsYear: "Second BHMS",
+    subject: "All Subjects",
+    examType: "Previous Year Question Papers",
+    verified: true,
+    file: "https://www.cnkotharihomeocollege.org/Students%20Corner/Question-Papers/5465",
+    solution: ""
+  },
+  {
+    id: "vngsu-third",
+    university: "VNSGU",
+    course: "BHMS",
+    year: "2022-2026",
+    bhmsYear: "Third BHMS",
+    subject: "All Subjects",
+    examType: "Previous Year Question Papers",
+    verified: true,
+    file: "https://www.cnkotharihomeocollege.org/Students%20Corner/Question-Papers/5465",
+    solution: ""
+  },
+  {
+    id: "vngsu-fourth",
+    university: "VNSGU",
+    course: "BHMS",
+    year: "2022-2026",
+    bhmsYear: "Fourth BHMS",
+    subject: "All Subjects",
+    examType: "Previous Year Question Papers",
+    verified: true,
+    file: "https://www.cnkotharihomeocollege.org/Students%20Corner/Question-Papers/5465",
+    solution: ""
+  }
+];
+
 
 /*
 Paper record format:
