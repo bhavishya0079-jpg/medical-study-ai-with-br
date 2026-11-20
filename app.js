@@ -159,7 +159,59 @@ function showMedicine(id) {
 
 /* ---------- Paper Display ---------- */
 
+
 function renderPapers(containerId) {
+  const container = document.getElementById(containerId);
+
+  if (!container || typeof PAPER_DATABASE === "undefined") return;
+
+  if (!PAPER_DATABASE.length) {
+    container.innerHTML = `
+      <div class="card">
+        <h3>Question Papers</h3>
+        <p>No question paper sources added yet.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = PAPER_DATABASE.map(paper => `
+    <div class="card">
+      <h3>${escapeHTML(paper.bhmsYear)}</h3>
+
+      <p><b>University:</b>
+        ${escapeHTML(paper.university || "Not specified")}
+      </p>
+
+      <p><b>Course:</b> ${escapeHTML(paper.course)}</p>
+      <p><b>Available Period:</b> ${escapeHTML(paper.year)}</p>
+      <p><b>Subjects:</b> ${escapeHTML(paper.subject)}</p>
+
+      <p>
+        <b>Paper Status:</b>
+        ${paper.university === "HNGU"
+          ? "HNGU source"
+          : "Other University source"}
+      </p>
+
+      ${
+        paper.file
+          ? `<a href="${escapeHTML(paper.file)}"
+               target="_blank"
+               rel="noopener noreferrer">
+               <button type="button">Open Paper Collection</button>
+             </a>`
+          : "<p>Paper link not available.</p>"
+      }
+
+      <p><small>
+        This is a university paper collection link.
+        Individual paper PDFs may need to be selected on the source website.
+      </small></p>
+    </div>
+  `).join("");
+}
+
   const container = document.getElementById(containerId);
   if (!container || typeof PAPER_DATABASE === "undefined") return;
 
