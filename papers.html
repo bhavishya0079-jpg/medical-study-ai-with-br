@@ -94,7 +94,30 @@ function renderPaperCollections() {
 
   const query = search ? search.value.trim().toLowerCase() : "";
 
-  const papers = PAPER_DATABASE.filter(paper => {
+  const paperSource = (typeof PAPER_DATABASE !== "undefined" && PAPER_DATABASE.length > 0)
+  ? PAPER_DATABASE
+  : [
+      {
+        university: "HNGU",
+        course: "BHMS",
+        year: "2025-2026",
+        bhmsYear: "All BHMS Years",
+        subject: "Official Exam Records",
+        examType: "Official Records",
+        file: "https://ngu.ac.in/"
+      },
+      {
+        university: "VNSGU",
+        course: "BHMS",
+        year: "2022-2026",
+        bhmsYear: "All BHMS Years",
+        subject: "Previous Year Paper Collection",
+        examType: "Question Paper Collection",
+        file: "https://www.cnkotharihomeocollege.org/Students%20Corner/Question-Papers/5465"
+      }
+    ];
+
+const papers = paperSource.filter(paper => {
     const yearMatch =
       !selectedPaperYear ||
       paper.bhmsYear === selectedPaperYear ||
