@@ -227,56 +227,34 @@ const MEDICINE_DATABASE = [
 ===================================== */
 
 
+
 const PAPER_DATABASE = [
   {
-    id: "vngsu-first",
-    university: "VNSGU",
+    id: "hngu-official-archive",
+    university: "HNGU",
     course: "BHMS",
-    year: "2022-2026",
-    bhmsYear: "First BHMS",
-    subject: "All Subjects",
-    examType: "Previous Year Question Papers",
+    year: "2025-2026",
+    bhmsYear: "All BHMS Years",
+    subject: "Official Exam Records",
+    examType: "Official Reassessment Records",
     verified: true,
-    file: "https://www.cnkotharihomeocollege.org/Students%20Corner/Question-Papers/5465",
+    file: "https://ngu.ac.in/ReAssesmentData.aspx",
     solution: ""
   },
   {
-    id: "vngsu-second",
+    id: "vnsgu-bhms-collection",
     university: "VNSGU",
     course: "BHMS",
     year: "2022-2026",
-    bhmsYear: "Second BHMS",
-    subject: "All Subjects",
-    examType: "Previous Year Question Papers",
-    verified: true,
-    file: "https://www.cnkotharihomeocollege.org/Students%20Corner/Question-Papers/5465",
-    solution: ""
-  },
-  {
-    id: "vngsu-third",
-    university: "VNSGU",
-    course: "BHMS",
-    year: "2022-2026",
-    bhmsYear: "Third BHMS",
-    subject: "All Subjects",
-    examType: "Previous Year Question Papers",
-    verified: true,
-    file: "https://www.cnkotharihomeocollege.org/Students%20Corner/Question-Papers/5465",
-    solution: ""
-  },
-  {
-    id: "vngsu-fourth",
-    university: "VNSGU",
-    course: "BHMS",
-    year: "2022-2026",
-    bhmsYear: "Fourth BHMS",
-    subject: "All Subjects",
-    examType: "Previous Year Question Papers",
+    bhmsYear: "All BHMS Years",
+    subject: "Previous Year Paper Collection",
+    examType: "Question Paper Collection",
     verified: true,
     file: "https://www.cnkotharihomeocollege.org/Students%20Corner/Question-Papers/5465",
     solution: ""
   }
 ];
+
 
 
 /*
