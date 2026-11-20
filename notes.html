@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Notes | Medical Study AI with BR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">📚 Medical Study AI</div>
+  <button onclick="goHome()">Home</button>
+</header>
+
+<main class="container">
+
+  <a href="bhms.html" class="back-link">← Back to Study Dashboard</a>
+
+  <section class="hero">
+    <h1>Medical Study Notes 📚</h1>
+    <p>Subject-wise notes, English reading, Gujarati pronunciation and explanation.</p>
+  </section>
+
+  <h2 class="section-title">Select Course</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>BHMS</h3>
+      <p>BHMS subjects and university exam preparation.</p>
+      <button onclick="showCourse('BHMS')">BHMS Notes</button>
+    </div>
+
+    <div class="card">
+      <h3>Allopathy</h3>
+      <p>Medical topics and medicine learning.</p>
+      <button onclick="showCourse('Allopathy')">Allopathy Notes</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">Search Notes</h2>
+
+  <div class="card">
+    <input
+      type="search"
+      id="notesSearch"
+      placeholder="Search topic or subject..."
+      oninput="searchItems('notesSearch','notesList')"
+    >
+  </div>
+
+  <h2 class="section-title">BHMS Years</h2>
+
+  <div class="grid">
+    <div class="card"><h3>First BHMS</h3><p>Anatomy, Physiology, Pharmacy and other subjects.</p></div>
+    <div class="card"><h3>Second BHMS</h3><p>Pathology, Microbiology and other subjects.</p></div>
+    <div class="card"><h3>Third BHMS</h3><p>Clinical and other subjects.</p></div>
+    <div class="card"><h3>Fourth BHMS</h3><p>Advanced clinical subjects.</p></div>
+  </div>
+
+  <h2 class="section-title">Study Notes</h2>
+
+  <div id="notesList">
+    <div class="card">
+      <p>Verified and organized study notes will appear here.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Study Format</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>1. English Content</h3>
+      <p>Original English topic and exam-oriented answer.</p>
+    </div>
+
+    <div class="card">
+      <h3>2. Gujarati Pronunciation</h3>
+      <p>English reading written in Gujarati script.</p>
+    </div>
+
+    <div class="card">
+      <h3>3. Gujarati Explanation</h3>
+      <p>Line-by-line explanation in simple Gujarati.</p>
+    </div>
+
+    <div class="card">
+      <h3>4. Viva Preparation</h3>
+      <p>Important oral examination questions and answers.</p>
+    </div>
+
+    <div class="card">
+      <h3>5. Diagrams</h3>
+      <p>Topic-related educational diagrams and labels.</p>
+    </div>
+
+    <div class="card">
+      <h3>6. MCQ Practice</h3>
+      <p>Topic-wise multiple-choice questions.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Important Note</h3>
+    <p>
+      Notes will be organized according to verified syllabus and
+      reliable educational sources. They are intended for learning
+      and examination preparation.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  Medical Study AI with BR © 2026
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+<script>
+function showCourse(course) {
+  const container = document.getElementById("notesList");
+  if (!container) return;
+
+  if (typeof NOTES_DATABASE === "undefined") return;
+
+  const filtered = NOTES_DATABASE.filter(note =>
+    note.course.toLowerCase() === course.toLowerCase()
+  );
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="card">
+        <p>${escapeHTML(course)} notes will be added here.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(note => `
+    <div class="card">
+      <h3>${escapeHTML(note.topic)}</h3>
+      <p>${escapeHTML(note.subject)}</p>
+      <p>${escapeHTML(note.englishContent)}</p>
+      <p>${escapeHTML(note.pronunciation)}</p>
+      <p>${escapeHTML(note.gujaratiExplanation)}</p>
+    </div>
+  `).join("");
+}
+</script>
+
+</body>
+</html>
