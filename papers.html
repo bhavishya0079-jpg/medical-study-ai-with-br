@@ -85,7 +85,17 @@
 
 <script>
 let selectedPaperYear = "";
-
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, function(c) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[c];
+  });
+}
 function renderPaperCollections() {
   const container = document.getElementById("papersList");
   const search = document.getElementById("paperSearch");
