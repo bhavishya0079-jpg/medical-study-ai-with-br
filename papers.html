@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HNGU Papers | Medical Study AI with BR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">📄 Medical Study AI</div>
+  <button onclick="goHome()">Home</button>
+</header>
+
+<main class="container">
+
+  <a href="bhms.html" class="back-link">← Back to BHMS</a>
+
+  <section class="hero">
+    <h1>HNGU Previous Year Papers</h1>
+    <p>BHMS question papers, answer solutions and Gujarati explanations.</p>
+  </section>
+
+  <h2 class="section-title">Search Question Papers</h2>
+
+  <div class="card">
+    <input
+      type="search"
+      id="paperSearch"
+      placeholder="Search year, subject or exam..."
+      oninput="searchItems('paperSearch','papersList')"
+    >
+  </div>
+
+  <h2 class="section-title">Select BHMS Year</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>First BHMS</h3>
+      <button onclick="filterPapers('First BHMS')">View Papers</button>
+    </div>
+
+    <div class="card">
+      <h3>Second BHMS</h3>
+      <button onclick="filterPapers('Second BHMS')">View Papers</button>
+    </div>
+
+    <div class="card">
+      <h3>Third BHMS</h3>
+      <button onclick="filterPapers('Third BHMS')">View Papers</button>
+    </div>
+
+    <div class="card">
+      <h3>Fourth BHMS</h3>
+      <button onclick="filterPapers('Fourth BHMS')">View Papers</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">Available Verified Papers</h2>
+
+  <div id="papersList" class="grid">
+    <div class="card">
+      <p>Verified HNGU papers will appear here after they are collected and added.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Answer Solutions</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>English Answers</h3>
+      <p>Exam-oriented answers in English.</p>
+    </div>
+
+    <div class="card">
+      <h3>Gujarati Explanation</h3>
+      <p>Simple Gujarati explanation of each answer.</p>
+    </div>
+
+    <div class="card">
+      <h3>Topic-wise Solutions</h3>
+      <p>Solutions organized subject-wise and topic-wise.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Upload Question Paper</h2>
+
+  <div class="card">
+    <p>Select a question paper image for preview.</p>
+
+    <input
+      type="file"
+      id="paperImage"
+      accept="image/*"
+      capture="environment"
+      onchange="previewImage('paperImage','paperPreview')"
+    >
+
+    <div id="paperPreview"></div>
+
+    <p>Automatic question extraction and solution generation will be added separately.</p>
+  </div>
+
+  <div class="card">
+    <h3>Paper Verification</h3>
+    <p>
+      Only papers confirmed to belong to Hemchandracharya North Gujarat
+      University will be labelled as HNGU papers. Other universities'
+      papers will be identified separately.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  Medical Study AI with BR © 2026
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+<script>
+function filterPapers(year) {
+  const container = document.getElementById("papersList");
+  if (!container) return;
+
+  if (typeof PAPER_DATABASE === "undefined") return;
+
+  const filtered = PAPER_DATABASE.filter(paper =>
+    paper.bhmsYear === year
+  );
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="card">
+        <p>No verified papers added for ${escapeHTML(year)} yet.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(paper => `
+    <div class="card">
+      <h3>${escapeHTML(paper.subject)}</h3>
+      <p>${escapeHTML(paper.year)}</p>
+      <p>${paper.verified ? "Verified HNGU Paper" : "Unverified Paper"}</p>
+      ${paper.file ? `<a href="${escapeHTML(paper.file)}" target="_blank" rel="noopener">Open Paper</a>` : ""}
+    </div>
+  `).join("");
+}
+</script>
+
+</body>
+</html>
